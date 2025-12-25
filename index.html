@@ -14,13 +14,13 @@
         body {
             font-family: Arial, Helvetica, sans-serif;
             color: rgba(255, 255, 255, 0.9);
-            background: linear-gradient(135deg, #1a1e2e 0%, #0f1419 50%, #1a1e2e 100%);
+            background: #0f1419;
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
         }
         
-        /* Geometric pattern overlay */
+        /* Base dark background with radial gradients */
         body::before {
             content: '';
             position: fixed;
@@ -28,12 +28,47 @@
             left: 0;
             width: 100%;
             height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(26, 30, 46, 0.8) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(26, 30, 46, 0.6) 0%, transparent 50%),
+                radial-gradient(circle at 40% 10%, rgba(20, 24, 35, 0.9) 0%, transparent 40%);
+            background-color: #0f1419;
+            z-index: 0;
+        }
+        
+        /* Diagonal streaks/lines overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
             background-image: 
-                linear-gradient(45deg, transparent 48%, rgba(255, 31, 87, 0.03) 48%, rgba(255, 31, 87, 0.03) 52%, transparent 52%),
-                linear-gradient(-45deg, transparent 48%, rgba(255, 31, 87, 0.03) 48%, rgba(255, 31, 87, 0.03) 52%, transparent 52%);
-            background-size: 100px 100px;
+                repeating-linear-gradient(
+                    -45deg,
+                    transparent,
+                    transparent 80px,
+                    rgba(255, 31, 87, 0.02) 80px,
+                    rgba(255, 31, 87, 0.02) 120px
+                ),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 100px,
+                    rgba(138, 43, 226, 0.015) 100px,
+                    rgba(138, 43, 226, 0.015) 140px
+                ),
+                linear-gradient(
+                    135deg,
+                    rgba(0, 0, 0, 0.3) 0%,
+                    transparent 30%,
+                    transparent 70%,
+                    rgba(0, 0, 0, 0.2) 100%
+                );
             pointer-events: none;
             z-index: 1;
+            opacity: 0.6;
         }
         
         /* Content wrapper */
@@ -79,8 +114,8 @@
         }
         
         .card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(20, 25, 35, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             padding: 20px;
             border-radius: 12px;
             margin-bottom: 20px;
@@ -107,17 +142,18 @@
         }
         
         .book-card {
-            background: rgba(15, 23, 42, 0.9);
-            border: 1px solid rgba(255, 31, 87, 0.2);
+            background: rgba(20, 25, 35, 0.8);
+            border: 1px solid rgba(255, 31, 87, 0.15);
             padding: 20px;
             border-radius: 12px;
             backdrop-filter: blur(10px);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
         
         .book-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(255, 31, 87, 0.5);
+            border-color: rgba(255, 31, 87, 0.4);
+            box-shadow: 0 8px 24px rgba(255, 31, 87, 0.2);
         }
         
         .book-emoji {
