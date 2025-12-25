@@ -5,271 +5,238 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sarthak Gupta | Author</title>
     <style>
-        body {
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
             font-family: Arial, Helvetica, sans-serif;
             color: rgba(255, 255, 255, 0.9);
-            background: #0a0e1a;
-            overflow-x: hidden;
+            background: linear-gradient(135deg, #1a1e2e 0%, #0f1419 50%, #1a1e2e 100%);
+            min-height: 100vh;
             position: relative;
+            overflow-x: hidden;
         }
+        
+        /* Geometric pattern overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(45deg, transparent 48%, rgba(255, 31, 87, 0.03) 48%, rgba(255, 31, 87, 0.03) 52%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(255, 31, 87, 0.03) 48%, rgba(255, 31, 87, 0.03) 52%, transparent 52%);
+            background-size: 100px 100px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* Content wrapper */
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+        
         header {
             padding: 80px 20px 40px 20px;
             text-align: center;
         }
+        
         header h1 {
             font-size: 48px;
             margin-bottom: 10px;
             color: #FFFFFF;
+            text-shadow: 0 0 20px rgba(255, 31, 87, 0.3);
         }
+        
         header p {
             font-size: 20px;
             opacity: 0.9;
             color: rgba(255, 255, 255, 0.8);
         }
+        
         section {
             padding: 40px 20px;
             max-width: 1000px;
             margin: auto;
-            position: relative;
-            z-index: 2;
         }
+        
         h2 {
             font-size: 32px;
             margin-bottom: 20px;
             color: #FF1B57;
+            text-shadow: 0 0 15px rgba(255, 31, 87, 0.4);
         }
+        
         h3 {
             margin-top: 0;
+            color: #FFFFFF;
         }
+        
         .card {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 20px;
             border-radius: 12px;
             margin-bottom: 20px;
+            backdrop-filter: blur(10px);
         }
+        
         footer {
             text-align: center;
             padding: 20px;
-            background: #020617;
+            background: rgba(2, 6, 23, 0.8);
             color: #94a3b8;
-            position: relative;
-            z-index: 2;
+            margin-top: 40px;
         }
+        
         a {
             color: #60a5fa;
             text-decoration: none;
         }
+        
         .books-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
+        
         .book-card {
             background: rgba(15, 23, 42, 0.9);
-            border: 1px solid rgba(148, 163, 184, 0.3);
+            border: 1px solid rgba(255, 31, 87, 0.2);
             padding: 20px;
             border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
+        
+        .book-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 31, 87, 0.5);
+        }
+        
         .book-emoji {
             font-size: 24px;
             margin-right: 8px;
         }
+        
         ul {
             padding-left: 20px;
         }
+        
         li {
             margin-bottom: 6px;
-        }
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 1.0;
-            animation: float 20s infinite ease-in-out;
-            z-index: 1;
-        }
-        .orb1 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(0, 255, 255, 0.7) 0%, transparent 70%);
-            top: -10%;
-            left: -5%;
-            animation: float1 25s infinite ease-in-out;
-        }
-        .orb2 {
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, rgba(138, 43, 226, 0.6) 0%, transparent 70%);
-            top: 20%;
-            right: -10%;
-            animation: float2 30s infinite ease-in-out;
-        }
-        .orb3 {
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(0, 191, 255, 0.7) 0%, transparent 70%);
-            bottom: 10%;
-            left: 10%;
-            animation: float3 22s infinite ease-in-out;
-        }
-        .orb4 {
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(147, 51, 234, 0.6) 0%, transparent 70%);
-            bottom: -15%;
-            right: 5%;
-            animation: float4 28s infinite ease-in-out;
-        }
-        @keyframes float1 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -50px) scale(1.1); }
-            66% { transform: translate(-20px, 30px) scale(0.9); }
-        }
-        @keyframes float2 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(-40px, 40px) scale(1.15); }
-            66% { transform: translate(20px, -30px) scale(0.95); }
-        }
-        @keyframes float3 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(50px, 20px) scale(0.9); }
-            66% { transform: translate(-30px, -40px) scale(1.1); }
-        }
-        @keyframes float4 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(-25px, -35px) scale(1.05); }
-            66% { transform: translate(40px, 25px) scale(0.95); }
         }
     </style>
 </head>
 <body>
 
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
-<div class="orb orb3"></div>
-<div class="orb orb4"></div>
+<div class="content">
+    <header>
+        <h1>Sarthak Gupta</h1>
+        <p>Author • Digital Creator • AI Entrepreneur</p>
 
-<header>
-    <h1>Sarthak Gupta</h1>
-    <p>Author • Digital Creator • AI Entrepreneur</p>
-
-    <div class="card" style="max-width: 800px; margin: 30px auto 0 auto;">
-        <p>
-            Sarthak Gupta is an emerging author, digital creator, and AI-focused entrepreneur known for simplifying complex ideas into practical, actionable systems.
-            His work centers on artificial intelligence, online income, mindset transformation, and modern productivity, helping readers build skills that actually work in the real world.
-        </p>
-        <p>
-            Sarthak writes for doers—people who want clarity, structure, and results rather than theory.
-            His books combine real-world experience with step-by-step frameworks, making advanced topics accessible even to beginners.
-        </p>
-    </div>
-</header>
-
-<section>
-    <h2>Books by Sarthak Gupta</h2>
-    <div class="books-list">
-        <div class="book-card">
-            <h3><span class="book-emoji">📘</span>AI Side Hustle Playbook</h3>
-            <p><strong>The Complete Guide to Building Profitable AI-Powered Businesses</strong></p>
+        <div class="card" style="max-width: 800px; margin: 30px auto 0 auto;">
             <p>
-                This book is a practical roadmap for anyone looking to earn online using AI—without needing technical skills or large investments.
-                It covers:
+                Sarthak Gupta is an emerging author, digital creator, and AI-focused entrepreneur known for simplifying complex ideas into practical, actionable systems.
+                His work centers on artificial intelligence, online income, mindset transformation, and modern productivity, helping readers build skills that actually work in the real world.
             </p>
-            <ul>
-                <li>Proven AI-based side hustle models</li>
-                <li>Step-by-step implementation strategies</li>
-                <li>Real-world use cases and monetization methods</li>
-                <li>Prompt engineering fundamentals</li>
-                <li>Tools, workflows, and growth strategies</li>
-            </ul>
             <p>
-                The AI Side Hustle Playbook is designed for freelancers, students, creators, and professionals who want to leverage AI as a serious income tool.
+                Sarthak writes for doers—people who want clarity, structure, and results rather than theory.
+                His books combine real-world experience with step-by-step frameworks, making advanced topics accessible even to beginners.
             </p>
         </div>
+    </header>
 
-        <div class="book-card">
-            <h3><span class="book-emoji">📘</span>The 90‑Day Reset</h3>
-            <p><strong>Rewire Your Mind, Money & Daily Habits for a Life You Actually Want</strong></p>
-            <p>
-                This book focuses on personal transformation through discipline, mindset shifts, and habit design. It offers a structured 90-day framework to:
-            </p>
+    <section>
+        <h2>Books by Sarthak Gupta</h2>
+        <div class="books-list">
+            <div class="book-card">
+                <h3><span class="book-emoji">📘</span>AI Side Hustle Playbook</h3>
+                <p><strong>The Complete Guide to Building Profitable AI-Powered Businesses</strong></p>
+                <p>
+                    This book is a practical roadmap for anyone looking to earn online using AI—without needing technical skills or large investments.
+                    It covers:
+                </p>
+                <ul>
+                    <li>Proven AI-based side hustle models</li>
+                    <li>Step-by-step implementation strategies</li>
+                    <li>Real-world use cases and monetization methods</li>
+                    <li>Prompt engineering fundamentals</li>
+                    <li>Tools, workflows, and growth strategies</li>
+                </ul>
+                <p>
+                    The AI Side Hustle Playbook is designed for freelancers, students, creators, and professionals who want to leverage AI as a serious income tool.
+                </p>
+            </div>
+
+            <div class="book-card">
+                <h3><span class="book-emoji">📘</span>The 90‑Day Reset</h3>
+                <p><strong>Rewire Your Mind, Money & Daily Habits for a Life You Actually Want</strong></p>
+                <p>
+                    This book focuses on personal transformation through discipline, mindset shifts, and habit design. It offers a structured 90-day framework to:
+                </p>
+                <ul>
+                    <li>Break mental blocks and limiting beliefs</li>
+                    <li>Build consistency and focus</li>
+                    <li>Improve financial thinking</li>
+                    <li>Create sustainable daily routines</li>
+                </ul>
+                <p>
+                    The 90-Day Reset blends psychology, productivity, and self-growth into a clear, actionable reset plan.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Writing Style & Philosophy</h2>
+        <div class="card">
+            <p>Sarthak's writing style is:</p>
             <ul>
-                <li>Break mental blocks and limiting beliefs</li>
-                <li>Build consistency and focus</li>
-                <li>Improve financial thinking</li>
-                <li>Create sustainable daily routines</li>
+                <li>Clear and beginner-friendly</li>
+                <li>Practical over theoretical</li>
+                <li>Structured with real examples</li>
+                <li>Focused on implementation and results</li>
             </ul>
             <p>
-                The 90-Day Reset blends psychology, productivity, and self-growth into a clear, actionable reset plan.
+                He believes knowledge is only valuable when it creates action, and his books are written to help readers move from confusion to clarity.
             </p>
         </div>
-    </div>
-</section>
+    </section>
 
-<section>
-    <h2>Writing Style & Philosophy</h2>
-    <div class="card">
-        <p>Sarthak's writing style is:</p>
-        <ul>
-            <li>Clear and beginner-friendly</li>
-            <li>Practical over theoretical</li>
-            <li>Structured with real examples</li>
-            <li>Focused on implementation and results</li>
-        </ul>
-        <p>
-            He believes knowledge is only valuable when it creates action, and his books are written to help readers move from confusion to clarity.
-        </p>
-    </div>
-</section>
+    <section>
+        <h2>Areas of Expertise</h2>
+        <div class="card">
+            <ul>
+                <li>Artificial Intelligence & Automation</li>
+                <li>Online Business & Side Hustles</li>
+                <li>Productivity & Habit Building</li>
+                <li>Digital Skills for the Modern Economy</li>
+                <li>Content Creation & Personal Growth</li>
+            </ul>
+        </div>
+    </section>
 
-<section>
-    <h2>Areas of Expertise</h2>
-    <div class="card">
-        <ul>
-            <li>Artificial Intelligence & Automation</li>
-            <li>Online Business & Side Hustles</li>
-            <li>Productivity & Habit Building</li>
-            <li>Digital Skills for the Modern Economy</li>
-            <li>Content Creation & Personal Growth</li>
-        </ul>
-    </div>
-</section>
-
-<section>
-    <h2>Author Statement</h2>
-    <div class="card">
-        <p>
-            "I write books to simplify powerful ideas and turn them into systems people can actually use.
-            My goal is to help readers take control of their time, skills, and income in a rapidly changing digital world."
-        </p>
-    </div>
-</section>
+    <section>
+        <h2>Author Statement</h2>
+        <div class="card">
+            <p>
+                "I write books to simplify powerful ideas and turn them into systems people can actually use.
+                My goal is to help readers take control of their time, skills, and income in a rapidly changing digital world."
+            </p>
+        </div>
+    </section>
+</div>
 
 <footer>
     © 2025 Sarthak Gupta. All Rights Reserved.
 </footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
-<script>
-VANTA.NET({
-  el: "body",
-  mouseControls: true,
-  touchControls: true,
-  gyroControls: false,
-  minHeight: 200.00,
-  minWidth: 200.00,
-  scale: 1.00,
-  scaleMobile: 1.00,
-  color: 0x932959,
-  backgroundColor: 0x0a0e1a,
-  points: 10.00,
-  maxDistance: 20.00,
-  spacing: 15.00
-})
-</script>
 
 </body>
 </html>
